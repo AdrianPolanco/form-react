@@ -1,0 +1,85 @@
+.hola {
+    text-align: center;
+    color: #00ffff;
+}
+
+.boton {
+    background-color: #00ffff;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background-color: #27d3d3;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.estado {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    border: #d3c9c9 1px solid;
+}
+
+.online {
+    background-color: #00ff62;
+}
+
+.offline {
+    background-color: #db2222;
+}
+
+.bienvenida {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #00ff62;
+}
+
+.greece {
+    background: -webkit-linear-gradient(
+        rgb(4, 0, 243) 10%,
+        rgb(255, 255, 255) 80%
+    );
+}
+
+.spain {
+    background: -webkit-linear-gradient(
+        rgb(245, 7, 7) 10%,
+        rgb(246, 250, 2) 80%,
+        rgb(245, 7, 7) 10%
+    );
+}
+
+.ireland {
+    background: -webkit-linear-gradient(
+        right,
+        rgb(6, 180, 35),
+        rgb(255, 255, 255),
+        rgb(243, 160, 5)
+    );
+}
+
+.countries {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 25px;
+    font-weight: 600;
+    -webkit-text-stroke: 1px rgb(29, 29, 29);
+}
