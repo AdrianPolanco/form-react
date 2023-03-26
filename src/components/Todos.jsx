@@ -1,25 +1,24 @@
 import Todo from "./Todo";
 
-const Todos = ({ todos, deleteTodo }) => {
+const Todos = ({ todos, deleteTodo, updateTodo }) => {
     return (
         <div className="mt-5">
             <h2 className="text-center">Tareas</h2>
             <ul className="list-group">
-                {todos.map((todo) => {
-                    const { id, title } = todo;
+                {todos.map((todo) => (
+                    <Todo
+                        key={todo.id}
+                        todo={todo}
+                        deleteTodo={deleteTodo}
+                        updateTodo={updateTodo}
+                    ></Todo>
+                ))}
 
-                    return todos.length !== 0 ? (
-                        <Todo
-                            key={id}
-                            todo={todo}
-                            deleteTodo={deleteTodo}
-                        ></Todo>
-                    ) : (
-                        <li className="list-group-item text-center">
-                            ¡Felicidades, no tienes tareas pendientes!
-                        </li>
-                    );
-                })}
+                {todos.length === 0 && (
+                    <li className="list-group-item text-center">
+                        ¡Felicidades, no tienes tareas pendientes!
+                    </li>
+                )}
             </ul>
         </div>
     );

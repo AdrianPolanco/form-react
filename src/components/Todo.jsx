@@ -1,7 +1,7 @@
 import classNames from "classnames";
 //Libreria usada para añadir estilos condicionales
 
-const Todo = ({ todo, deleteTodo }) => {
+const Todo = ({ todo, deleteTodo, updateTodo }) => {
     const { id, title, description, priority, state } = todo;
     return (
         <li
@@ -29,7 +29,10 @@ const Todo = ({ todo, deleteTodo }) => {
                         >
                             Eliminar
                         </button>
-                        <button className="btn btn-sm btn-warning">
+                        <button
+                            className="btn btn-sm btn-warning"
+                            onClick={() => updateTodo(id)}
+                        >
                             Actualizar
                         </button>
                     </div>

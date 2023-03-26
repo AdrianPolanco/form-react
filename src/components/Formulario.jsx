@@ -33,7 +33,7 @@ const Formulario = ({ addTodo }) => {
             state: state === "completado",
         });
         return Swal.fire({
-            position: "top-end",
+            position: "center",
             icon: "success",
             title: "¡Tarea añadida exitosamente!",
             showConfirmButton: false,

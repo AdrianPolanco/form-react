@@ -1,32 +1,8 @@
-import { useState } from "react";
-import NoControlado from "./components/NoControlados";
+import { useEffect, useState } from "react";
 import Formulario from "./components/Formulario";
 import Todos from "./components/Todos";
-import Todo from "./components/Todo";
 
-const initialStateTodos = [
-    {
-        id: 1,
-        title: "Aprender React",
-        description: "Quiero aprender React",
-        state: true,
-        priority: true,
-    },
-    {
-        id: 2,
-        title: "Aprender C#",
-        description: "Quiero aprender C#",
-        state: false,
-        priority: true,
-    },
-    {
-        id: 3,
-        title: "Aprender ASP.NET Core",
-        description: "Quiero aprender ASP.NET Core",
-        state: false,
-        priority: false,
-    },
-];
+const initialStateTodos = JSON.parse(localStorage.getItem("todos")) || [];
 
 function App() {
     const [todos, setTodos] = useState(initialStateTodos);
@@ -41,11 +17,36 @@ function App() {
         const newArray = todos.filter((todo) => todo.id !== id);
         setTodos(newArray);
     };
+
+    const updateTodo = (id) => {
+        const newArray = todos.map((todo) => {
+            todo.id === id && (todo.state = !todo.state);
+            return todo;
+        });
+        setTodos(newArray);
+    };
+
+    const orderTodo = (arrayTodos) => {
+        return arrayTodos.sort((a, b) => {
+            if (a.priority === b.priority) return 0;
+            if (a.priority) return -1;
+            if (!a.priority) return 1;
+        });
+    };
+
+    //El primer argumento es un callback que la funcion que se ejecutara cuando se haga el primer renderizado, el segundo argumento son unos corchetes([]) vacíos, que usaremos en caso de que querramos que el primer argumento se ejecute solo una vez. si queremos que el useEffect se ejecute cada vez que el array todos tenga un cambio, ponemos [todos] como segundo argumento
+    useEffect(() => {
+        localStorage.setItem("todos", JSON.stringify(todos));
+    }, [todos]);
     return (
         <div className="container mb-2">
             <h1 className="my-5">Formulario</h1>
             <Formulario addTodo={addTodo}></Formulario>
-            <Todos todos={todos} deleteTodo={deleteTodo}></Todos>
+            <Todos
+                todos={orderTodo(todos)}
+                deleteTodo={deleteTodo}
+                updateTodo={updateTodo}
+            ></Todos>
         </div>
     );
 }
